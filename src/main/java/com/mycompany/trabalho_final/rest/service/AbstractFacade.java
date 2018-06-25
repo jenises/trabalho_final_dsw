@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.trabalho_final.rest.service;
+package com.mycompany.trabalho_final.DAO.service;
 
 import java.util.List;
 import javax.persistence.EntityManager;

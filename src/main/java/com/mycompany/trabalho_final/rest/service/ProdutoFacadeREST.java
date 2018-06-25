@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.trabalho_final.rest.service;
+package com.mycompany.trabalho_final.DAO.service;
 
 import com.mycompany.trabalho_final.model.Produto;
 import java.util.List;
@@ -25,7 +25,7 @@ import javax.ws.rs.core.MediaType;
  * @author Jhenises
  */
 @Stateless
-@Path("produto")
+@Path("com.mycompany.trabalho_final.model.produto")
 public class ProdutoFacadeREST extends AbstractFacade<Produto> {
 
     @PersistenceContext(unitName = "com.mycompany_trabalho_final_war_1.0-SNAPSHOTPU")
@@ -64,12 +64,11 @@ public class ProdutoFacadeREST extends AbstractFacade<Produto> {
 
     @GET
     @Override
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Produto> findAll() {
         return super.findAll();
     }
-    
-    
+
     @GET
     @Path("{from}/{to}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})

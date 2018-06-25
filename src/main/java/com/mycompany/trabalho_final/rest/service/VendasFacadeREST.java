@@ -5,7 +5,7 @@
  */
 package com.mycompany.trabalho_final.DAO.service;
 
-import com.mycompany.trabalho_final.model.Cliente;
+import com.mycompany.trabalho_final.DAO.Vendas;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -25,27 +25,27 @@ import javax.ws.rs.core.MediaType;
  * @author Jhenises
  */
 @Stateless
-@Path("com.mycompany.trabalho_final.model.cliente")
-public class ClienteFacadeREST extends AbstractFacade<Cliente> {
+@Path("com.mycompany.trabalho_final.dao.vendas")
+public class VendasFacadeREST extends AbstractFacade<Vendas> {
 
     @PersistenceContext(unitName = "com.mycompany_trabalho_final_war_1.0-SNAPSHOTPU")
     private EntityManager em;
 
-    public ClienteFacadeREST() {
-        super(Cliente.class);
+    public VendasFacadeREST() {
+        super(Vendas.class);
     }
 
     @POST
     @Override
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void create(Cliente entity) {
+    public void create(Vendas entity) {
         super.create(entity);
     }
 
     @PUT
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void edit(@PathParam("id") Integer id, Cliente entity) {
+    public void edit(@PathParam("id") Integer id, Vendas entity) {
         super.edit(entity);
     }
 
@@ -58,21 +58,21 @@ public class ClienteFacadeREST extends AbstractFacade<Cliente> {
     @GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Cliente find(@PathParam("id") Integer id) {
+    public Vendas find(@PathParam("id") Integer id) {
         return super.find(id);
     }
 
     @GET
     @Override
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Cliente> findAll() {
+    public List<Vendas> findAll() {
         return super.findAll();
     }
 
     @GET
     @Path("{from}/{to}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Cliente> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
+    public List<Vendas> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }
 
