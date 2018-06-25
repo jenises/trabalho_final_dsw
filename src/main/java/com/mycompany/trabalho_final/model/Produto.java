@@ -2,16 +2,21 @@ package com.mycompany.trabalho_final.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -29,6 +34,17 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Produto.findByTamanho", query = "SELECT p FROM Produto p WHERE p.tamanho = :tamanho")})
 public class Produto implements Serializable {
 
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "produto")
+    private com.mycompany.trabalho_final.DAO.ProdutoTamanho produtoTamanho;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "produto")
+    private Collection<com.mycompany.trabalho_final.DAO.VendasItens> vendasItensCollection;
+
+   /* @OneToMany(cascade = CascadeType.ALL, mappedBy = "produto")
+    private Collection<VendasItens> vendasItensCollection;
+
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "produto")
+    private ProdutoTamanho produtoTamanho;
+*/
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -125,5 +141,39 @@ public class Produto implements Serializable {
     public String toString() {
         return "com.mycompany.trabalho_final.model.Produto[ id=" + id + " ]";
     }
-    
+
+  /*  public ProdutoTamanho getProdutoTamanho() {
+        return produtoTamanho;
+    }
+
+    public void setProdutoTamanho(ProdutoTamanho produtoTamanho) {
+        this.produtoTamanho = produtoTamanho;
+    }
+
+    @XmlTransient
+    public Collection<VendasItens> getVendasItensCollection() {
+        return vendasItensCollection;
+    }
+
+    public void setVendasItensCollection(Collection<VendasItens> vendasItensCollection) {
+        this.vendasItensCollection = vendasItensCollection;
+    }
+
+    public com.mycompany.trabalho_final.DAO.ProdutoTamanho getProdutoTamanho() {
+        return produtoTamanho;
+    }
+
+    public void setProdutoTamanho(com.mycompany.trabalho_final.DAO.ProdutoTamanho produtoTamanho) {
+        this.produtoTamanho = produtoTamanho;
+    }
+
+    @XmlTransient
+    public Collection<com.mycompany.trabalho_final.DAO.VendasItens> getVendasItensCollection() {
+        return vendasItensCollection;
+    }
+
+    public void setVendasItensCollection(Collection<com.mycompany.trabalho_final.DAO.VendasItens> vendasItensCollection) {
+        this.vendasItensCollection = vendasItensCollection;
+    }
+   */ 
 }

@@ -5,18 +5,23 @@
  */
 package com.mycompany.trabalho_final.model;
 
+import com.mycompany.trabalho_final.DAO.Vendas;
 import java.io.Serializable;
 import java.math.BigInteger;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -33,6 +38,15 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Cliente.findByEndereco", query = "SELECT c FROM Cliente c WHERE c.endereco = :endereco")
     , @NamedQuery(name = "Cliente.findByEndEntrega", query = "SELECT c FROM Cliente c WHERE c.endEntrega = :endEntrega")})
 public class Cliente implements Serializable {
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCliente")
+    private Collection<Vendas> vendasCollection;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCliente")
+    //private Collection<Vendas_1> vendasCollection;
+
+    //@OneToMany(cascade = CascadeType.ALL, mappedBy = "idCliente")
+  //  private Collection<Vendas> vendasCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -130,5 +144,32 @@ public class Cliente implements Serializable {
     public String toString() {
         return "com.mycompany.trabalho_final.model.Cliente[ id=" + id + " ]";
     }
-    
+
+    //@XmlTransient
+    /*public Collection<Vendas> getVendasCollection() {
+        return vendasCollection;
+    }
+
+    public void setVendasCollection(Collection<Vendas> vendasCollection) {
+        this.vendasCollection = vendasCollection;
+    }
+
+    @XmlTransient
+    public Collection<Vendas_1> getVendasCollection() {
+        return vendasCollection;
+    }
+
+    public void setVendasCollection(Collection<Vendas_1> vendasCollection) {
+        this.vendasCollection = vendasCollection;
+    }
+    */
+
+    @XmlTransient
+    public Collection<Vendas> getVendasCollection() {
+        return vendasCollection;
+    }
+
+    public void setVendasCollection(Collection<Vendas> vendasCollection) {
+        this.vendasCollection = vendasCollection;
+    }
 }
